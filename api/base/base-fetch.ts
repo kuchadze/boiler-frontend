@@ -1,5 +1,5 @@
-import {queryParamsBuilder} from "@/api/query-params-builder";
 import {QueriesInterface} from "@/api/interfaces/query-params.interface";
+import * as qs from "qs";
 
 interface GenerateUrlArguments<T> {
   id?: number;
@@ -29,7 +29,11 @@ export const generateUrl = <T>(
   const urlWithId = `${url}${id ? `/${id}` : ""}${subResource ? `/${subResource}` : ""}`;
 
   if (queryParameters) {
-    return queryParamsBuilder(queryParameters, urlWithId);
+    const queryString = qs.stringify(data.queryParameters, {
+      arrayFormat: "comma",
+      encode: false,
+    });
+    return `${urlWithId}?${queryString}`;
   }
 
   return urlWithId;

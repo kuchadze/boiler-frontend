@@ -1,7 +1,7 @@
 "use client";
 import styles from "./ProductForm.module.css";
 import { Button, Form, Input } from "antd";
-import { upsert } from "@/actions/login";
+import { upsert } from "@/api/crud-operations";
 import { useRouter } from "next/navigation";
 
 export default function ProductForm(props: { id?: number }) {

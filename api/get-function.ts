@@ -1,4 +1,4 @@
-import { baseFetch, generateUrl } from "@/api/base-fetch";
+import { baseFetch, generateUrl } from "@/api/base/base-fetch";
 import { QueriesInterface } from "@/api/interfaces/query-params.interface";
 
 export interface DataInterface<T> {

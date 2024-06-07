@@ -1,7 +1,6 @@
 "use server";
-
 import { revalidateTag } from "next/cache";
-import { baseFetch, generateUrl } from "@/api/base-fetch";
+import { baseFetch, generateUrl } from "@/api/base/base-fetch";
 
 export const create = async <T>(url: string, body: T, subResource?: string) => {
   try {
