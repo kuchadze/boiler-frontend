@@ -1,4 +1,4 @@
 export enum AntSortDirectionEnum {
-    Ascend = 'ascend',
-    Descend = 'descend'
+  Ascend = 'ascend',
+  Descend = 'descend',
 }

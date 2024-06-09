@@ -1,5 +1,5 @@
-import { SortDirectionEnum } from "@/enums/sort-direction.enum";
-import { AntSortDirectionEnum } from "@/components/Table/enums/ant-sort-direction.enum";
+import { AntSortDirectionEnum } from '@/components/Table/enums/ant-sort-direction.enum';
+import { SortDirectionEnum } from '@/enums/sort-direction.enum';
 
 type SortObjectsMap = { [key: string]: SortDirectionEnum };
 

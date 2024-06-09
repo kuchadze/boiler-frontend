@@ -1,30 +1,41 @@
-"use client";
-import { Button, Form, Input, Table as AntdTable, TableProps } from "antd";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { useSearch } from "@/components/Table/hooks/useSearch";
-import { AntColumnInterface } from "@/components/Table/interfaces/ant-column.interface";
-import { useQuery } from "@/hooks/useQuery";
-import { sortObjectMaps } from "@/components/Table/utils/sort-objects.map";
-import {ProductInterface} from "@/app/products/page";
+'use client';
 
-interface Props {
-  dataSource: any;
+import { Table as AntdTable, Button, Form, Input, TableProps } from 'antd';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import {
+  ReadonlyURLSearchParams,
+  useRouter,
+  useSearchParams,
+} from 'next/navigation';
+import { JSX } from 'react';
+import { useSearch } from '@/components/Table/hooks/useSearch';
+import { AntColumnInterface } from '@/components/Table/interfaces/ant-column.interface';
+import { sortObjectMaps } from '@/components/Table/utils/sort-objects.map';
+import { useQuery } from '@/hooks/useQuery/useQuery';
+
+interface Props<T> {
+  dataSource: T;
   count: number;
   limit: number;
   columns: AntColumnInterface[];
 }
 
-export default function Table<T>(props: Props) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+export default function Table<T>(props: Props<T>): JSX.Element {
+  const router: AppRouterInstance = useRouter();
+  const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const { applySearchForColumns } = useSearch();
   const { sort, paginate } = useQuery<T>();
 
-  const columns = applySearchForColumns(props.columns);
+  const columns: AntColumnInterface[] = applySearchForColumns(props.columns);
 
-  const onFinish = ({ search }: { search: string }) => {
-    const params = new URLSearchParams(searchParams.toString());
+  const onFinish: ({ search }: { search: string }) => void = ({
+    search,
+  }: {
+    search: string;
+  }) => {
+    const params: URLSearchParams = new URLSearchParams(
+      searchParams.toString(),
+    );
     for (const item of columns) {
       if (search) {
         params.append(item.dataIndex, search);
@@ -35,14 +46,9 @@ export default function Table<T>(props: Props) {
     router.push(`?${params.toString()}`);
   };
 
-  const onChange: TableProps["onChange"] = (
-    pagination,
-    filters,
-    sorter,
-    extra,
-  ) => {
+  const onChange: TableProps['onChange'] = (pagination, filters, sorter) => {
     const { order, field } = sorter as {
-      order: "ascend" | "descend";
+      order: 'ascend' | 'descend';
       field: string;
     };
     const { pageSize } = pagination;
@@ -53,21 +59,21 @@ export default function Table<T>(props: Props) {
   return (
     <div>
       <Form onFinish={onFinish}>
-        <Form.Item name={"search"}>
+        <Form.Item name={'search'}>
           <Input />
         </Form.Item>
-        <Button htmlType={"submit"}>Submit</Button>
+        <Button htmlType={'submit'}>Submit</Button>
       </Form>
       <AntdTable
         columns={columns}
-        dataSource={props.dataSource}
+        dataSource={props.dataSource as []}
         onChange={onChange}
-        showSorterTooltip={{ target: "sorter-icon" }}
+        showSorterTooltip={{ target: 'sorter-icon' }}
         pagination={{
           defaultPageSize: props.limit,
           total: props.count,
           current:
-            parseInt(searchParams.get("offset") ?? "0") / props.limit + 1,
+            parseInt(searchParams.get('offset') ?? '0') / props.limit + 1,
         }}
       />
     </div>
