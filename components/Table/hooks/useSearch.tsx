@@ -1,5 +1,4 @@
 'use client';
-
 import { SearchOutlined } from '@ant-design/icons';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import {
@@ -10,15 +9,10 @@ import {
 import ColumnSearch from '@/components/Table/ColumnSearch';
 import { AntColumnInterface } from '@/components/Table/interfaces/ant-column.interface';
 import { FilterDropDownInterface } from '@/components/Table/interfaces/filter-drop-down.interface';
+import { ApplySearchForColumnsType } from '@/components/Table/types/apply-search-for-columns.type';
 
 export const useSearch: () => {
-  applySearchForColumns: (columns: AntColumnInterface[]) => {
-    search: boolean;
-    sorter: boolean;
-    dataIndex: string;
-    title: string;
-    key: string | number;
-  }[];
+  applySearchForColumns: ApplySearchForColumnsType;
 } = () => {
   const router: AppRouterInstance = useRouter();
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
