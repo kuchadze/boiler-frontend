@@ -1,51 +1,52 @@
-import { get } from "@/api/get-function";
-import styles from "./page.module.css";
-import Table from "@/components/Table/Table";
-import * as qs from "qs";
-import { AntColumnInterface } from "@/components/Table/interfaces/ant-column.interface";
-
-export interface ProductInterface {
-  id: number;
-  name: string;
-  userId: number;
-  price: string;
-  shop: string;
-}
+import { JSX } from 'react';
+import styles from './page.module.css';
+import { DataInterface, get } from '@/api/get-function';
+import { QueriesType } from '@/api/interfaces/query-params.interface';
+import { ProductInterface } from '@/app/interfaces/product.interface';
+import { ProductTableDataSourceInterface } from '@/app/products/create/interfaces/product-table-data-source.interface';
+import Table from '@/components/Table/Table';
+import { AntColumnInterface } from '@/components/Table/interfaces/ant-column.interface';
 
 export default async function ProductsPage(props: {
   searchParams: { [key: string]: string };
-}) {
-  const products = await get<ProductInterface>({
-    url: "products",
-    queryParameters: props.searchParams,
-  });
+}): Promise<JSX.Element> {
+  const products: DataInterface<ProductInterface[]> =
+    await get<ProductInterface>({
+      url: 'products',
+      queryParameters: props.searchParams as QueriesType<ProductInterface>,
+    });
 
-  const dataSource = products.data.map((product) => ({
-    key: product.id,
-    name: product.name,
-    price: product.price,
-    shop: product.shop,
-  }));
+  const dataSource: ProductTableDataSourceInterface[] = products.data.map(
+    (product: ProductInterface) => ({
+      id: product.id,
+      key: product.id,
+      name: product.name,
+      price: product.price,
+      shop: product.shop,
+    }),
+  );
+
+  console.log(dataSource);
 
   const columns: AntColumnInterface[] = [
     {
-      title: "სახელი",
-      dataIndex: "name",
-      key: "name",
+      title: 'სახელი',
+      dataIndex: 'name',
+      key: 'name',
       search: true,
       sorter: true,
     },
     {
-      title: "ფასი",
-      dataIndex: "price",
-      key: "price",
+      title: 'ფასი',
+      dataIndex: 'price',
+      key: 'price',
       search: true,
       sorter: true,
     },
     {
-      title: "მაღაზია",
-      dataIndex: "shop",
-      key: "shop",
+      title: 'მაღაზია',
+      dataIndex: 'shop',
+      key: 'shop',
       search: true,
       sorter: true,
     },
@@ -54,7 +55,7 @@ export default async function ProductsPage(props: {
   return (
     <div className={styles.mainWrapper}>
       <div className={styles.wrapper}>
-        <Table<ProductInterface>
+        <Table<ProductTableDataSourceInterface[]>
           dataSource={dataSource}
           count={products.count}
           columns={columns}
