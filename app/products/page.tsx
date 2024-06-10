@@ -26,8 +26,6 @@ export default async function ProductsPage(props: {
     }),
   );
 
-  console.log(dataSource);
-
   const columns: AntColumnInterface[] = [
     {
       title: 'სახელი',
