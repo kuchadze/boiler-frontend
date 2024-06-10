@@ -6,10 +6,10 @@ import {
   useRouter,
   useSearchParams,
 } from 'next/navigation';
-import ColumnSearch from '@/components/Table/ColumnSearch';
-import { AntColumnInterface } from '@/components/Table/interfaces/ant-column.interface';
-import { FilterDropDownInterface } from '@/components/Table/interfaces/filter-drop-down.interface';
-import { ApplySearchForColumnsType } from '@/components/Table/types/apply-search-for-columns.type';
+import ColumnSearch from '@/app/Components/Table/ColumnSearch';
+import { AntColumnInterface } from '@/app/Components/Table/interfaces/ant-column.interface';
+import { FilterDropDownInterface } from '@/app/Components/Table/interfaces/filter-drop-down.interface';
+import { ApplySearchForColumnsType } from '@/app/Components/Table/types/apply-search-for-columns.type';
 
 export const useSearch: () => {
   applySearchForColumns: ApplySearchForColumnsType;

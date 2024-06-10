@@ -1,6 +1,6 @@
 'use server';
 import { revalidateTag } from 'next/cache';
-import { baseFetch, generateUrl } from '@/api/base/base-fetch';
+import { baseFetch, generateUrl } from '@/app/Api/base/base-fetch';
 
 export const create: <T>(
   url: string,

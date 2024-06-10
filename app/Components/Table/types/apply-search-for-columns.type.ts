@@ -1,4 +1,4 @@
-import { AntColumnInterface } from '@/components/Table/interfaces/ant-column.interface';
+import { AntColumnInterface } from '@/app/Components/Table/interfaces/ant-column.interface';
 
 export type ApplySearchForColumnsType = (columns: AntColumnInterface[]) => {
   search: boolean;

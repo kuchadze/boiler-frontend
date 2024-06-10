@@ -4,14 +4,14 @@ import {
   useRouter,
   useSearchParams,
 } from 'next/navigation';
-import { SortDirectionEnum } from '@/enums/sort-direction.enum';
-import { FilterType } from '@/hooks/useQuery/types/filter.type';
-import { PaginationType } from '@/hooks/useQuery/types/pagination.type';
-import { SearchType } from '@/hooks/useQuery/types/search.type';
-import { SortType } from '@/hooks/useQuery/types/sort.type';
-import { UseQueryType } from '@/hooks/useQuery/types/use-query.type';
+import { SortDirectionEnum } from '@/app/Enums/sort-direction.enum';
+import { FilterType } from '@/app/Hooks/useQuery/types/filter.type';
+import { PaginationType } from '@/app/Hooks/useQuery/types/pagination.type';
+import { SearchType } from '@/app/Hooks/useQuery/types/search.type';
+import { SortType } from '@/app/Hooks/useQuery/types/sort.type';
+import { UseQueryType } from '@/app/Hooks/useQuery/types/use-query.type';
 
-export const useQuery = <T, TKeys = keyof T>() => {
+export const useQuery: UseQueryType = <T, TKeys = keyof T>() => {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const router: AppRouterInstance = useRouter();
   const params: URLSearchParams = new URLSearchParams(searchParams.toString());

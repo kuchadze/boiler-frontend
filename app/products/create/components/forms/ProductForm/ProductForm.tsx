@@ -4,7 +4,7 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { useRouter } from 'next/navigation';
 import { JSX } from 'react';
 import styles from './ProductForm.module.css';
-import { upsert } from '@/api/crud-operations';
+import { upsert } from '@/app/Api/crud-operations';
 
 export default function ProductForm(props: { id?: number }): JSX.Element {
   const router: AppRouterInstance = useRouter();

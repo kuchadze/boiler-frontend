@@ -1,5 +1,5 @@
-import { baseFetch, generateUrl } from '@/api/base/base-fetch';
-import { QueriesType } from '@/api/interfaces/query-params.interface';
+import { baseFetch, generateUrl } from '@/app/Api/base/base-fetch';
+import { QueriesType } from '@/app/Api/interfaces/query-params.interface';
 
 export interface DataInterface<T> {
   status: number;

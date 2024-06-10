@@ -1,4 +1,4 @@
-import { SortDirectionEnum } from '@/enums/sort-direction.enum';
+import { SortDirectionEnum } from '@/app/Enums/sort-direction.enum';
 
 export type UseQueryType = <T, TKeys = keyof T>() => {
   paginate: (limit: number, page?: number) => void;

@@ -1,5 +1,4 @@
 'use client';
-
 import { Table as AntdTable, Button, Form, Input, TableProps } from 'antd';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import {
@@ -8,10 +7,10 @@ import {
   useSearchParams,
 } from 'next/navigation';
 import { JSX } from 'react';
-import { useSearch } from '@/components/Table/hooks/useSearch';
-import { AntColumnInterface } from '@/components/Table/interfaces/ant-column.interface';
-import { sortObjectMaps } from '@/components/Table/utils/sort-objects.map';
-import { useQuery } from '@/hooks/useQuery/useQuery';
+import { useSearch } from '@/app/Components/Table/hooks/useSearch';
+import { AntColumnInterface } from '@/app/Components/Table/interfaces/ant-column.interface';
+import { sortObjectMaps } from '@/app/Components/Table/utils/sort-objects.map';
+import { useQuery } from '@/app/Hooks/useQuery/useQuery';
 
 interface Props<T> {
   dataSource: T;
