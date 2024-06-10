@@ -4,7 +4,7 @@ import { DataInterface, get } from '@/app/Api/get-function';
 import { QueriesType } from '@/app/Api/interfaces/query-params.interface';
 import Table from '@/app/Components/Table/Table';
 import { AntColumnInterface } from '@/app/Components/Table/interfaces/ant-column.interface';
-import { ProductInterface } from '@/app/interfaces/product.interface';
+import { ProductInterface } from '@/app/Interfaces/product.interface';
 import { ProductTableDataSourceInterface } from '@/app/products/create/interfaces/product-table-data-source.interface';
 
 export default async function ProductsPage(props: {
