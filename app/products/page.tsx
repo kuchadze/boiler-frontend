@@ -1,11 +1,11 @@
 import { JSX } from 'react';
 import styles from './page.module.css';
-import { DataInterface, get } from '@/api/get-function';
-import { QueriesType } from '@/api/interfaces/query-params.interface';
+import { DataInterface, get } from '@/app/Api/get-function';
+import { QueriesType } from '@/app/Api/interfaces/query-params.interface';
+import Table from '@/app/Components/Table/Table';
+import { AntColumnInterface } from '@/app/Components/Table/interfaces/ant-column.interface';
 import { ProductInterface } from '@/app/interfaces/product.interface';
 import { ProductTableDataSourceInterface } from '@/app/products/create/interfaces/product-table-data-source.interface';
-import Table from '@/components/Table/Table';
-import { AntColumnInterface } from '@/components/Table/interfaces/ant-column.interface';
 
 export default async function ProductsPage(props: {
   searchParams: { [key: string]: string };

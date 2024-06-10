@@ -1,4 +1,4 @@
-import { FilterDropDownInterface } from '@/components/Table/interfaces/filter-drop-down.interface';
+import { FilterDropDownInterface } from '@/app/Components/Table/interfaces/filter-drop-down.interface';
 
 export interface ColumnSearchPropsInterface extends FilterDropDownInterface {
   dataIndex: string;

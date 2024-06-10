@@ -1,7 +1,7 @@
 import * as qs from 'qs';
-import { GenerateUrlArguments } from '@/api/interfaces/generate-url-arguments.interface';
-import { BaseFetchType } from '@/api/types/base-fetch.type';
-import { GenerateUrlType } from '@/api/types/generate-url.type';
+import { GenerateUrlArguments } from '@/app/Api/interfaces/generate-url-arguments.interface';
+import { BaseFetchType } from '@/app/Api/types/base-fetch.type';
+import { GenerateUrlType } from '@/app/Api/types/generate-url.type';
 
 export const baseFetch: BaseFetchType = async (
   url: string,

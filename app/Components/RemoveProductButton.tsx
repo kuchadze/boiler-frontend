@@ -1,7 +1,7 @@
 'use client';
 import { Button } from 'antd';
 import { JSX } from 'react';
-import { remove } from '@/api/crud-operations';
+import { remove } from '@/app/Api/crud-operations';
 
 export default function RemoveProductButton(props: {
   id: number;

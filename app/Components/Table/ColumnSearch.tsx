@@ -1,7 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input } from 'antd';
 import { JSX } from 'react';
-import { ColumnSearchPropsInterface } from '@/components/Table/interfaces/column-search-props-interface';
+import { ColumnSearchPropsInterface } from '@/app/Components/Table/interfaces/column-search-props-interface';
 
 const ColumnSearch: (props: ColumnSearchPropsInterface) => JSX.Element = (
   props,

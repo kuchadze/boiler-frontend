@@ -1,5 +1,5 @@
-import { baseFetch, generateUrl } from '@/api/base/base-fetch';
-import { QueriesType } from '@/api/interfaces/query-params.interface';
+import { baseFetch, generateUrl } from '@/app/Api/base/base-fetch';
+import { QueriesType } from '@/app/Api/interfaces/query-params.interface';
 
 export interface DataInterface<T> {
   status: number;
@@ -26,6 +26,7 @@ export async function get<T>(
   data: GetDataArguments<T>,
   id?: number,
 ): Promise<DataInterface<T> | DataInterface<T[]>> {
+  // eslint-disable-next-line no-useless-catch
   try {
     const { url, subResource, queryParameters } = data;
     const response: Response = await baseFetch(

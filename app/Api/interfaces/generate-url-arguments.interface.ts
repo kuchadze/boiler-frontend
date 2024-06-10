@@ -1,4 +1,4 @@
-import { QueriesType } from '@/api/interfaces/query-params.interface';
+import { QueriesType } from '@/app/Api/interfaces/query-params.interface';
 
 export interface GenerateUrlArguments<T> {
   id?: number;
