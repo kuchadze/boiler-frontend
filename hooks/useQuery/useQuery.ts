@@ -11,7 +11,7 @@ import { SearchType } from '@/hooks/useQuery/types/search.type';
 import { SortType } from '@/hooks/useQuery/types/sort.type';
 import { UseQueryType } from '@/hooks/useQuery/types/use-query.type';
 
-export const useQuery: UseQueryType = <T, TKeys = keyof T>() => {
+export const useQuery = <T, TKeys = keyof T>() => {
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
   const router: AppRouterInstance = useRouter();
   const params: URLSearchParams = new URLSearchParams(searchParams.toString());
