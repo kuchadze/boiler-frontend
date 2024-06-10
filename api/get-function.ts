@@ -26,6 +26,7 @@ export async function get<T>(
   data: GetDataArguments<T>,
   id?: number,
 ): Promise<DataInterface<T> | DataInterface<T[]>> {
+  // eslint-disable-next-line no-useless-catch
   try {
     const { url, subResource, queryParameters } = data;
     const response: Response = await baseFetch(

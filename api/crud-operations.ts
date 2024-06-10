@@ -11,6 +11,7 @@ export const create: <T>(
   body: T,
   subResource?: string,
 ) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const response: Response = await baseFetch(
       generateUrl({ url, subResource }),
@@ -42,6 +43,7 @@ export const update: <T>(
   url: string,
   subResource?: string,
 ) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const response: Response = await baseFetch(
       generateUrl({ url, id, subResource }),
@@ -66,6 +68,7 @@ export const remove: (url: string, id: number) => Promise<unknown> = async (
   url: string,
   id: number,
 ) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const response: Response = await baseFetch(generateUrl({ url, id }), {
       method: 'DELETE',
@@ -88,6 +91,7 @@ export const upsert: <T>(
   status: number;
   ok: boolean;
 }> = async <T>(url: string, body: T, id?: number, subResource?: string) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const method: 'POST' | 'PUT' = id ? 'PUT' : 'POST';
     const response: Response = await baseFetch(
