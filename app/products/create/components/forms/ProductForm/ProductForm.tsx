@@ -12,7 +12,6 @@ export default function ProductForm(props: { id?: number }): JSX.Element {
   const onSubmit: (values: { name: string }) => Promise<void> = async (values: {
     name: string;
   }) => {
-    console.log(values);
     const response: {
       body: { name: string; userId: number };
       status: number;
