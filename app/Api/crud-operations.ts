@@ -1,114 +1,84 @@
 'use server';
 import { revalidateTag } from 'next/cache';
 import { baseFetch, generateUrl } from '@/app/Api/base/base-fetch';
+import { CreateType } from '@/app/Api/types/create.type';
+import { UpdateType } from '@/app/Api/types/update.type';
+import { UpsertType } from '@/app/Api/types/upsert.type';
 
-export const create: <T>(
-  url: string,
-  body: T,
-  subResource?: string,
-) => Promise<{ body: T; status: number; ok: boolean }> = async <T>(
+export const create: CreateType = async <T>(
   url: string,
   body: T,
   subResource?: string,
 ) => {
-  // eslint-disable-next-line no-useless-catch
-  try {
-    const response: Response = await baseFetch(
-      generateUrl({ url, subResource }),
-      {
-        method: 'POST',
-        body: JSON.stringify(body),
-      },
-    );
+  const response: Response = await baseFetch(
+    generateUrl({ url, subResource }),
+    {
+      method: 'POST',
+      body: JSON.stringify(body),
+    },
+  );
 
-    revalidateTag(url);
-    return {
-      body: await response.json(),
-      status: response.status,
-      ok: response.ok,
-    };
-  } catch (err) {
-    throw err;
-  }
+  revalidateTag(url);
+  return {
+    body: await response.json(),
+    status: response.status,
+    ok: response.ok,
+  };
 };
 
-export const update: <T>(
-  id: number,
-  body: T,
-  url: string,
-  subResource?: string,
-) => Promise<{ body: T; status: number; ok: boolean }> = async <T>(
+export const update: UpdateType = async <T>(
   id: number,
   body: T,
   url: string,
   subResource?: string,
 ) => {
-  // eslint-disable-next-line no-useless-catch
-  try {
-    const response: Response = await baseFetch(
-      generateUrl({ url, id, subResource }),
-      {
-        method: 'PUT',
-        body: JSON.stringify(body),
-      },
-    );
+  const response: Response = await baseFetch(
+    generateUrl({ url, id, subResource }),
+    {
+      method: 'PUT',
+      body: JSON.stringify(body),
+    },
+  );
 
-    revalidateTag(url);
-    return {
-      body: await response.json(),
-      status: response.status,
-      ok: response.ok,
-    };
-  } catch (err) {
-    throw err;
-  }
+  revalidateTag(url);
+  return {
+    body: await response.json(),
+    status: response.status,
+    ok: response.ok,
+  };
 };
 
 export const remove: (url: string, id: number) => Promise<unknown> = async (
   url: string,
   id: number,
 ) => {
-  // eslint-disable-next-line no-useless-catch
-  try {
-    const response: Response = await baseFetch(generateUrl({ url, id }), {
-      method: 'DELETE',
-    });
+  const response: Response = await baseFetch(generateUrl({ url, id }), {
+    method: 'DELETE',
+  });
 
-    revalidateTag(url);
-    return await response.json();
-  } catch (err) {
-    throw err;
-  }
+  revalidateTag(url);
+  return await response.json();
 };
 
-export const upsert: <T>(
+export const upsert: UpsertType = async <T>(
   url: string,
   body: T,
   id?: number,
   subResource?: string,
-) => Promise<{
-  body: T;
-  status: number;
-  ok: boolean;
-}> = async <T>(url: string, body: T, id?: number, subResource?: string) => {
-  // eslint-disable-next-line no-useless-catch
-  try {
-    const method: 'POST' | 'PUT' = id ? 'PUT' : 'POST';
-    const response: Response = await baseFetch(
-      generateUrl({ url, id, subResource }),
-      {
-        method,
-        body: JSON.stringify(body),
-      },
-    );
+) => {
+  const method: 'POST' | 'PUT' = id ? 'PUT' : 'POST';
+  const response: Response = await baseFetch(
+    generateUrl({ url, id, subResource }),
+    {
+      method,
+      body: JSON.stringify(body),
+    },
+  );
 
-    revalidateTag(url);
-    return {
-      body: await response.json(),
-      status: response.status,
-      ok: response.ok,
-    };
-  } catch (err) {
-    throw err;
-  }
+  revalidateTag(url);
+  return {
+    body: await response.json(),
+    status: response.status,
+    ok: response.ok,
+  };
 };
