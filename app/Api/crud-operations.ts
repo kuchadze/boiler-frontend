@@ -1,11 +1,11 @@
 'use server';
 import { revalidateTag } from 'next/cache';
 import { baseFetch, generateUrl } from '@/app/Api/base/base-fetch';
-import { CreateType } from '@/app/Api/types/create.type';
-import { UpdateType } from '@/app/Api/types/update.type';
-import { UpsertType } from '@/app/Api/types/upsert.type';
+import { CreateApiType } from '@/app/Api/types/create-api.type';
+import { UpdateApiType } from '@/app/Api/types/update-api.type';
+import { UpsertApiType } from '@/app/Api/types/upsert-api.type';
 
-export const create: CreateType = async <T, D>(
+export const createApi: CreateApiType = async <T, D>(
   url: string,
   body: T,
   subResource?: string,
@@ -26,7 +26,7 @@ export const create: CreateType = async <T, D>(
   };
 };
 
-export const update: UpdateType = async <T>(
+export const updateApi: UpdateApiType = async <T>(
   id: number,
   body: T,
   url: string,
@@ -48,7 +48,7 @@ export const update: UpdateType = async <T>(
   };
 };
 
-export const remove: (url: string, id: number) => Promise<unknown> = async (
+export const removeApi: (url: string, id: number) => Promise<unknown> = async (
   url: string,
   id: number,
 ) => {
@@ -60,7 +60,7 @@ export const remove: (url: string, id: number) => Promise<unknown> = async (
   return await response.json();
 };
 
-export const upsert: UpsertType = async <T>(
+export const upsertApi: UpsertApiType = async <T>(
   url: string,
   body: T,
   id?: number,

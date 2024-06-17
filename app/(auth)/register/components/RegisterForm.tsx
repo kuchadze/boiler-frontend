@@ -1,7 +1,7 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { Button, Form, Input } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
-import { register } from '@/app/(auth)/register/actions/register.action';
+import { authAction } from '@/app/(auth)/actions/auth-action';
 import { RegisterSchema } from '@/app/(auth)/register/schemas/register.schema';
 import { ComponentType } from '@/app/Types/component-type';
 
@@ -13,7 +13,7 @@ const RegisterForm: ComponentType = () => {
   const onSubmit: (values: RegisterSchema) => Promise<void> = async (
     values: RegisterSchema,
   ) => {
-    await register(values.toPlain());
+    await authAction('/register', values.toPlain());
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

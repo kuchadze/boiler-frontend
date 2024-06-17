@@ -2,7 +2,7 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { Button, Form, Input } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
-import { login } from '@/app/(auth)/login/actions/login.action';
+import { authAction } from '@/app/(auth)/actions/auth-action';
 import { LoginSchema } from '@/app/(auth)/login/schemas/login.schema';
 import { LoginSubmitType } from '@/app/(auth)/login/types/login-submit.type';
 import { ComponentType } from '@/app/Types/component-type';
@@ -13,7 +13,7 @@ const LoginForm: ComponentType = () => {
   });
 
   const onFinish: LoginSubmitType = async (values: LoginSchema) => {
-    login(values.toPlain());
+    await authAction('/login', values.toPlain());
   };
 
   return (

@@ -1,7 +1,8 @@
 import { ResponseInterface } from '@/app/Api/interfaces/response.interface';
 
-export type CreateType = <T, D>(
-  url: string,
+export type UpdateApiType = <T>(
+  id: number,
   body: T,
+  url: string,
   subResource?: string,
-) => Promise<ResponseInterface<D>>;
+) => Promise<ResponseInterface<T>>;

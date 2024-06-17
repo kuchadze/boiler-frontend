@@ -1,8 +1,7 @@
 import { ResponseInterface } from '@/app/Api/interfaces/response.interface';
 
-export type UpsertType = <T>(
+export type CreateApiType = <T, D>(
   url: string,
   body: T,
-  id?: number,
   subResource?: string,
-) => Promise<ResponseInterface<T>>;
+) => Promise<ResponseInterface<D>>;
