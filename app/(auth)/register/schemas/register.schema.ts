@@ -1,5 +1,5 @@
-import { IsEmail, IsString } from 'class-validator';
 import { RegisterInterface } from '@/app/(auth)/register/interfaces/register.interface';
+import { IsEmail, IsString, Validate } from 'class-validator';
 
 export class RegisterSchema implements RegisterInterface {
   @IsString()
@@ -14,12 +14,22 @@ export class RegisterSchema implements RegisterInterface {
   @IsString()
   password!: string;
 
+  @IsString()
+  @Validate(
+    (data: RegisterSchema) => {
+      return data.password === data.confirmPassword;
+    },
+    { message: 'password do not much' },
+  )
+  confirmPassword!: string;
+
   toPlain(): RegisterInterface {
     return {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
       password: this.password,
+      confirmPassword: this.confirmPassword,
     };
   }
 }

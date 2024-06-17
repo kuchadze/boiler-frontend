@@ -42,7 +42,14 @@ const RegisterForm: ComponentType = () => {
         <Controller
           name={'password'}
           control={control}
-          render={({ field }) => <Input.Password {...field} type={'email'} />}
+          render={({ field }) => <Input.Password {...field} />}
+        />
+      </Form.Item>
+      <Form.Item label={'გაიმეორე პაროლი'}>
+        <Controller
+          name={'confirmPassword'}
+          control={control}
+          render={({ field }) => <Input.Password {...field} />}
         />
       </Form.Item>
       <Button htmlType={'submit'}>გაგრძელება</Button>

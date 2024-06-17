@@ -3,4 +3,5 @@ export interface RegisterInterface {
   lastName: string;
   email: string;
   password: string;
+  confirmPassword: string;
 }
