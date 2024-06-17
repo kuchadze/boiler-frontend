@@ -1,5 +1,5 @@
-import { RegisterInterface } from '@/app/(auth)/register/interfaces/register.interface';
 import { IsEmail, IsString, Validate } from 'class-validator';
+import { RegisterInterface } from '@/app/(auth)/register/interfaces/register.interface';
 
 export class RegisterSchema implements RegisterInterface {
   @IsString()
