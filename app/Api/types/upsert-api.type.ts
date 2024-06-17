@@ -1,6 +1,6 @@
 import { ResponseInterface } from '@/app/Api/interfaces/response.interface';
 
-export type UpsertType = <T>(
+export type UpsertApiType = <T>(
   url: string,
   body: T,
   id?: number,

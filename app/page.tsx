@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { JSX } from 'react';
 import styles from './page.module.css';
+import { ComponentType } from '@/app/Types/component-type';
 
-export default function Home(): JSX.Element {
+const Home: ComponentType = () => {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -93,4 +93,6 @@ export default function Home(): JSX.Element {
       </div>
     </main>
   );
-}
+};
+
+export default Home;

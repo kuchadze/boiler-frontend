@@ -4,7 +4,8 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { useRouter } from 'next/navigation';
 import { JSX } from 'react';
 import styles from './ProductForm.module.css';
-import { upsert } from '@/app/Api/crud-operations';
+import { upsertApi } from '@/app/Api/crud-operations';
+import { ResponseInterface } from '@/app/Api/interfaces/response.interface';
 
 export default function ProductForm(props: { id?: number }): JSX.Element {
   const router: AppRouterInstance = useRouter();
@@ -12,11 +13,15 @@ export default function ProductForm(props: { id?: number }): JSX.Element {
   const onSubmit: (values: { name: string }) => Promise<void> = async (values: {
     name: string;
   }) => {
-    const response: {
-      body: { name: string; userId: number };
-      status: number;
-      ok: boolean;
-    } = await upsert('products', { ...values, userId: 1 }, props.id);
+    const response: ResponseInterface<{ userId: number; name: string }> =
+      await upsertApi(
+        'products',
+        {
+          ...values,
+          userId: 1,
+        },
+        props.id,
+      );
 
     if (response.ok) {
       router.push('/products');
