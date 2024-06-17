@@ -1,19 +1,18 @@
 'use client';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { Button, Form, Input } from 'antd';
-import { JSX } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { login } from '@/app/(auth)/login/actions/login.action';
 import { LoginSchema } from '@/app/(auth)/login/schemas/login.schema';
+import { LoginSubmitType } from '@/app/(auth)/login/types/login-submit.type';
+import { ComponentType } from '@/app/Types/component-type';
 
-const LoginForm: () => JSX.Element = () => {
+const LoginForm: ComponentType = () => {
   const { control, handleSubmit } = useForm<LoginSchema>({
     resolver: classValidatorResolver(LoginSchema),
   });
 
-  const onFinish: (values: LoginSchema) => void = async (
-    values: LoginSchema,
-  ) => {
+  const onFinish: LoginSubmitType = async (values: LoginSchema) => {
     login(values.toPlain());
   };
 
