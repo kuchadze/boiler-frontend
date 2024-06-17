@@ -5,7 +5,7 @@ import { CreateType } from '@/app/Api/types/create.type';
 import { UpdateType } from '@/app/Api/types/update.type';
 import { UpsertType } from '@/app/Api/types/upsert.type';
 
-export const create: CreateType = async <T>(
+export const create: CreateType = async <T, D>(
   url: string,
   body: T,
   subResource?: string,
@@ -20,7 +20,7 @@ export const create: CreateType = async <T>(
 
   revalidateTag(url);
   return {
-    body: await response.json(),
+    body: (await response.json()) as D,
     status: response.status,
     ok: response.ok,
   };
