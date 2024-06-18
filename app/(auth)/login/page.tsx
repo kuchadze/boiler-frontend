@@ -1,5 +1,5 @@
 import styles from './Login.module.scss';
-import LoginForm from '@/app/(auth)/login/components/LoginForm';
+import LoginForm from '@/app/(auth)/login/components/LoginForm/LoginForm';
 import { ComponentType } from '@/app/Types/component-type';
 
 const LoginPage: ComponentType = () => {
