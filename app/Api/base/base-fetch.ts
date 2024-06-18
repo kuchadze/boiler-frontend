@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import * as qs from 'qs';
 import { GenerateUrlArguments } from '@/app/Api/interfaces/generate-url-arguments.interface';
 import { BaseFetchType } from '@/app/Api/types/base-fetch.type';
@@ -8,11 +9,17 @@ export const baseFetch: BaseFetchType = async (
   url: string,
   data: RequestInit,
 ) => {
+  const accessToken: string | undefined = cookies().get('accessToken')?.value;
+  const refreshToken: string | undefined = cookies().get('refreshToken')?.value;
+
+  const tokens: string = `accessToken=${accessToken}; refreshToken=${refreshToken}`;
+
   return await fetch(`${apiConfig.rootApiUrl}/${url}`, {
     ...data,
     headers: {
       ...data.headers,
       'Content-Type': 'application/json',
+      Cookie: tokens,
     },
   });
 };
