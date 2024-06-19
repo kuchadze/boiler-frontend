@@ -1,3 +1,4 @@
+'use client';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { Button, Form, Input } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
