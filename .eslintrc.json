@@ -27,7 +27,7 @@
       "error",
       {
         "variableDeclaration": true,
-        "variableDeclarationIgnoreFunction": false
+        "variableDeclarationIgnoreFunction": true
       }
     ],
     "import/order": [

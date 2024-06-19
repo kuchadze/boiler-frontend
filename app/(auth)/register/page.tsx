@@ -1,14 +1,17 @@
-'use client';
 import styles from './Register.module.scss';
 import RegisterForm from '@/app/(auth)/register/components/RegisterForm';
-import GoogleLogin from '@/app/Components/GoogleLogin/GoogleLogin';
+import OAuthLogin from '@/app/Components/OAuthLogin/OAuthLogin';
+import { OAuthTypeEnum } from '@/app/Enums/oauth-type.enum';
 import { ComponentType } from '@/app/Types/component-type';
+import DiscordIcon from '@/public/icons/discord.png';
+import GoogleIcon from '@/public/icons/google-login.png';
 
 const RegisterPage: ComponentType = () => {
   return (
     <div className={styles.container}>
       <RegisterForm />
-      <GoogleLogin />
+      <OAuthLogin type={OAuthTypeEnum.Google} image={GoogleIcon} />
+      <OAuthLogin type={OAuthTypeEnum.Discord} image={DiscordIcon} />
     </div>
   );
 };
