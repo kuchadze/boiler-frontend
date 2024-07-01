@@ -1,5 +1,5 @@
 import { IsString } from 'class-validator';
-import { DepartmentSchemaInterface } from '@/src/app/departments/create/interfaces/department-schema.interface';
+import { DepartmentSchemaInterface } from '@/src/app/departments/create/types/interfaces/department-schema.interface';
 
 export class DepartmentSchema implements DepartmentSchemaInterface {
   @IsString()

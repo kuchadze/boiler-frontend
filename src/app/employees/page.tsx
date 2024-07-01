@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 import styles from './EmployeesPage.module.scss';
-import { EmployeeTableDataSourceInterface } from '@/src/app/employees/interfaces/employee-table-data-source.interface';
-import { EmployeeInterface } from '@/src/app/employees/interfaces/employee.interface';
+import { EmployeeTableDataSourceInterface } from '@/src/app/employees/types/interfaces/employee-table-data-source.interface';
+import { EmployeeInterface } from '@/src/app/employees/types/interfaces/employee.interface';
 import { employeeTableColumns } from '@/src/app/employees/utils/employee-table.columns';
 import { DataInterface, get } from '@/src/shared/api/get-function';
 import Table from '@/src/shared/components/Table/Table';

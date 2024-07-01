@@ -1,5 +1,5 @@
 import { IsEmail, IsNumber, IsString } from 'class-validator';
-import { EmployeeSchemaInterface } from '@/src/app/employees/create/interfaces/employee-schema.interface';
+import { EmployeeSchemaInterface } from '@/src/app/employees/create/types/interfaces/employee-schema.interface';
 
 export class EmployeeSchema implements EmployeeSchemaInterface {
   @IsString()

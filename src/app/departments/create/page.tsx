@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 import styles from './CreateDepartmentPage.module.scss';
-import CreateDepartmentForm from '@/src/app/departments/create/components/CreateDepartmentForm';
-import { DepartmentInterface } from '@/src/app/departments/interfaces/department.interface';
+import CreateDepartmentForm from '@/src/app/departments/create/forms/CreateDepartmentForm/CreateDepartmentForm';
+import { DepartmentInterface } from '@/src/app/departments/types/interfaces/department.interface';
 import { DataInterface, get } from '@/src/shared/api/get-function';
 
 const CreateEmployeePage = async (props: {

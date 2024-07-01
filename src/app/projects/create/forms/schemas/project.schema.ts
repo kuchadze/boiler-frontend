@@ -1,5 +1,5 @@
 import { IsDecimal, IsString } from 'class-validator';
-import { ProjectSchemaInterface } from '@/src/app/projects/create/interfaces/project-schema.interface';
+import { ProjectSchemaInterface } from '@/src/app/projects/create/types/interfaces/project-schema.interface';
 
 export class ProjectSchema implements ProjectSchemaInterface {
   @IsString()

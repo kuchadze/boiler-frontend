@@ -1,6 +1,6 @@
 'use client';
 
-import { EmployeeTableDataSourceInterface } from '@/src/app/employees/interfaces/employee-table-data-source.interface';
+import { EmployeeTableDataSourceInterface } from '@/src/app/employees/types/interfaces/employee-table-data-source.interface';
 import { AntColumnInterface } from '@/src/shared/components/Table/types/interfaces/ant-column.interface';
 
 export const employeeTableColumns: AntColumnInterface<

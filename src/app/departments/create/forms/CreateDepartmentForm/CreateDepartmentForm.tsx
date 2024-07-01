@@ -5,9 +5,9 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { useRouter } from 'next/navigation';
 import { JSX, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { DepartmentSchemaInterface } from '@/src/app/departments/create/interfaces/department-schema.interface';
-import { DepartmentSchema } from '@/src/app/departments/create/schemas/department.schema';
-import { DepartmentInterface } from '@/src/app/departments/interfaces/department.interface';
+import { DepartmentSchema } from '@/src/app/departments/create/forms/schemas/department.schema';
+import { DepartmentSchemaInterface } from '@/src/app/departments/create/types/interfaces/department-schema.interface';
+import { DepartmentInterface } from '@/src/app/departments/types/interfaces/department.interface';
 import { upsertApi } from '@/src/shared/api/crud-operations';
 
 const CreateDepartmentForm = (props: {

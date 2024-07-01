@@ -1,6 +1,6 @@
 'use client';
 
-import { DepartmentTableDataSourceInterface } from '@/src/app/departments/interfaces/department-table-data-source.interface';
+import { DepartmentTableDataSourceInterface } from '@/src/app/departments/types/interfaces/department-table-data-source.interface';
 import { AntColumnInterface } from '@/src/shared/components/Table/types/interfaces/ant-column.interface';
 
 export const departmentTableColumns: AntColumnInterface<

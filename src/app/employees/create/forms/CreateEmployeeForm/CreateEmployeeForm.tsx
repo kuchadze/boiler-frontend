@@ -5,9 +5,9 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { useRouter } from 'next/navigation';
 import { JSX, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { EmployeeSchemaInterface } from '@/src/app/employees/create/interfaces/employee-schema.interface';
-import { EmployeeSchema } from '@/src/app/employees/create/schemas/employee.schema';
-import { EmployeeInterface } from '@/src/app/employees/interfaces/employee.interface';
+import { EmployeeSchema } from '@/src/app/employees/create/forms/schemas/employee.schema';
+import { EmployeeSchemaInterface } from '@/src/app/employees/create/types/interfaces/employee-schema.interface';
+import { EmployeeInterface } from '@/src/app/employees/types/interfaces/employee.interface';
 import { upsertApi } from '@/src/shared/api/crud-operations';
 
 const CreateEmployeeForm = (props: {

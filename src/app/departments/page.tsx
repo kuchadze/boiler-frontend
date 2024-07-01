@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 import styles from './ProjectsPage.module.scss';
-import { DepartmentTableDataSourceInterface } from '@/src/app/departments/interfaces/department-table-data-source.interface';
-import { DepartmentInterface } from '@/src/app/departments/interfaces/department.interface';
+import { DepartmentTableDataSourceInterface } from '@/src/app/departments/types/interfaces/department-table-data-source.interface';
+import { DepartmentInterface } from '@/src/app/departments/types/interfaces/department.interface';
 import { departmentTableColumns } from '@/src/app/departments/utils/department-table.columns';
 import { DataInterface, get } from '@/src/shared/api/get-function';
 import Table from '@/src/shared/components/Table/Table';

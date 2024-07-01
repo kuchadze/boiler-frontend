@@ -1,6 +1,6 @@
 import { JSX } from 'react';
 import styles from './CreateProjectPage.module.scss';
-import CreateProjectForm from '@/src/app/projects/create/components/CreateProjectForm';
+import CreateProjectForm from '@/src/app/projects/create/forms/CreateProjectForm/CreateProjectForm';
 import { ProjectInterface } from '@/src/app/projects/interfaces/project.interface';
 import { DataInterface, get } from '@/src/shared/api/get-function';
 

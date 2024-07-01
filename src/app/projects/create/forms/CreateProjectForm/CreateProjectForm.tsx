@@ -5,8 +5,8 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { useRouter } from 'next/navigation';
 import { JSX, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { ProjectSchemaInterface } from '@/src/app/projects/create/interfaces/project-schema.interface';
-import { ProjectSchema } from '@/src/app/projects/create/schemas/project.schema';
+import { ProjectSchema } from '@/src/app/projects/create/forms/schemas/project.schema';
+import { ProjectSchemaInterface } from '@/src/app/projects/create/types/interfaces/project-schema.interface';
 import { ProjectInterface } from '@/src/app/projects/interfaces/project.interface';
 import { upsertApi } from '@/src/shared/api/crud-operations';
 
