@@ -13,7 +13,6 @@ export const baseFetch: BaseFetchType = async (
   const refreshToken: string | undefined = cookies().get('refreshToken')?.value;
 
   const tokens: string = `accessToken=${accessToken}; refreshToken=${refreshToken}`;
-
   return await fetch(`${apiConfig.rootApiUrl}/${url}`, {
     ...data,
     headers: {

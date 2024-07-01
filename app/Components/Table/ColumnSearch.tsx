@@ -10,19 +10,29 @@ const ColumnSearch: (props: ColumnSearchPropsInterface) => JSX.Element = (
     <div style={{ padding: 8 }}>
       <Input
         placeholder={`Search ${props.dataIndex}`}
-        value={props.selectedKeys[0]}
+        value={props.selectedKeys[0] ?? props.value}
         onChange={(e) =>
           props.setSelectedKeys(e.target.value ? [e.target.value] : [])
         }
         onPressEnter={() =>
-          props.handleSearch(props.selectedKeys, confirm, props.dataIndex)
+          props.handleSearch(
+            props.selectedKeys,
+            props.confirm,
+            props.dataIndex,
+            props?.value,
+          )
         }
         style={{ width: 188, marginBottom: 8, display: 'block' }}
       />
       <Button
         type="primary"
         onClick={() =>
-          props.handleSearch(props.selectedKeys, confirm, props.dataIndex)
+          props.handleSearch(
+            props.selectedKeys,
+            props.confirm,
+            props.dataIndex,
+            props.value,
+          )
         }
         icon={<SearchOutlined />}
         size="small"

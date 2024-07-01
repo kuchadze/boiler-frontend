@@ -26,13 +26,14 @@ export default async function ProductsPage(props: {
     }),
   );
 
-  const columns: AntColumnInterface[] = [
+  const columns: AntColumnInterface<ProductTableDataSourceInterface[]>[] = [
     {
       title: 'სახელი',
       dataIndex: 'name',
       key: 'name',
       search: true,
       sorter: true,
+      globalSearch: true,
     },
     {
       title: 'ფასი',
@@ -40,6 +41,7 @@ export default async function ProductsPage(props: {
       key: 'price',
       search: true,
       sorter: true,
+      globalSearch: true,
     },
     {
       title: 'მაღაზია',
@@ -47,6 +49,7 @@ export default async function ProductsPage(props: {
       key: 'shop',
       search: true,
       sorter: true,
+      globalSearch: true,
     },
   ];
 
@@ -54,6 +57,7 @@ export default async function ProductsPage(props: {
     <div className={styles.mainWrapper}>
       <div className={styles.wrapper}>
         <Table<ProductTableDataSourceInterface[]>
+          resource={'products'}
           dataSource={dataSource}
           count={products.count}
           columns={columns}
