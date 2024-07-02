@@ -12,12 +12,9 @@ const redirectToLoginPage = (req: NextRequest): NextResponse<unknown> => {
 const handleJwtTokenExpiration = async (
   req: NextRequest,
 ): Promise<NextResponse> => {
-  const tokensResponse: DataInterface<AuthResponseInterface> = await get(
-    {
-      url: 'auth/refresh',
-    },
-    0,
-  );
+  const tokensResponse: DataInterface<AuthResponseInterface> = (await get({
+    url: 'auth/refresh',
+  })) as unknown as DataInterface<AuthResponseInterface>;
 
   const isRefreshTokenExpired: boolean = tokensResponse.status === 401;
 
