@@ -7,41 +7,42 @@ import {
   useSearchParams,
 } from 'next/navigation';
 import ColumnSearch from '@/src/shared/components/Table/components/ColumnSearch/ColumnSearch';
-import { ApplySearchForColumnsType } from '@/src/shared/components/Table/types/apply-search-for-columns.type';
 import { AntColumnInterface } from '@/src/shared/components/Table/types/interfaces/ant-column.interface';
 import { FilterDropDownInterface } from '@/src/shared/components/Table/types/interfaces/filter-drop-down.interface';
+import { UseSearchReturnType } from '@/src/shared/components/Table/types/use-search-return.type';
 
-export const useSearch: () => {
-  applySearchForColumns: ApplySearchForColumnsType;
-} = () => {
+export function useSearch<T>(
+  columns: AntColumnInterface<T>[],
+): UseSearchReturnType<T> {
   const router: AppRouterInstance = useRouter();
   const searchParams: ReadonlyURLSearchParams = useSearchParams();
 
-  const handleSearch: (
+  const handleSearch = (
     selectedKeys: string[],
     confirm: () => void,
     dataIndex: string,
-  ) => void = (
-    selectedKeys: string[],
-    confirm: () => void,
-    dataIndex: string,
-  ) => {
+    value: string | null,
+  ): void => {
     confirm();
     const params: URLSearchParams = new URLSearchParams(
       searchParams.toString(),
     );
-    if (selectedKeys[0]) {
-      params.set(`search[${dataIndex}]`, selectedKeys[0]);
+    const searchDataIndex = `search[${dataIndex}]`;
+    const paramAlreadyExistsInUrl = params.has(searchDataIndex);
+
+    if (paramAlreadyExistsInUrl) {
+      params.delete(searchDataIndex);
+    }
+
+    if (selectedKeys[0] || value) {
+      params.set(searchDataIndex, selectedKeys[0]);
     } else {
-      params.delete(`search[${dataIndex}]`);
+      params.delete(searchDataIndex);
     }
     router.push(`?${params.toString()}`);
   };
 
-  const handleReset: (clearFilters: () => void, dataIndex: string) => void = (
-    clearFilters: () => void,
-    dataIndex: string,
-  ) => {
+  const handleReset = (clearFilters: () => void, dataIndex: string): void => {
     clearFilters();
     const params: URLSearchParams = new URLSearchParams(
       searchParams.toString(),
@@ -50,47 +51,70 @@ export const useSearch: () => {
     router.push(`?${params.toString()}`);
   };
 
-  function applySearchForColumns(columns: AntColumnInterface[]): {
-    title: string;
-    dataIndex: string;
-    search: boolean;
-    key: string | number;
-    sorter: boolean;
-  }[] {
-    const updatedColumns: AntColumnInterface[] = columns?.map((column) => {
-      const data: AntColumnInterface = { ...column };
+  const applySearchForColumns = (): AntColumnInterface<T>[] => {
+    return columns.map((column) => {
+      const params: URLSearchParams = new URLSearchParams(
+        searchParams.toString(),
+      );
 
       if (column.search) {
-        Object.assign(data, {
-          filterDropDown: ({
+        const value: string | null = params.get(`search[${column.dataIndex}]`);
+        Object.assign(column, {
+          filterDropdown: ({
             setSelectedKeys,
             selectedKeys,
             confirm,
             clearFilters,
           }: FilterDropDownInterface) => (
             <ColumnSearch
-              dataIndex={data.dataIndex}
+              dataIndex={column.dataIndex as string}
               selectedKeys={selectedKeys}
               setSelectedKeys={setSelectedKeys}
               handleReset={handleReset}
               clearFilters={clearFilters}
               confirm={confirm}
               handleSearch={handleSearch}
+              value={value}
             />
           ),
           filterIcon: (filtered: boolean) => (
             <SearchOutlined
-              style={{ color: filtered ? '#1890ff' : undefined }}
+              style={{ color: filtered || value ? '#1890ff' : undefined }}
             />
           ),
         });
       }
 
-      return data;
+      return column;
     });
+  };
 
-    return updatedColumns;
-  }
+  const applyGlobalSearch = (search: string): void => {
+    const params: URLSearchParams = new URLSearchParams(
+      searchParams.toString(),
+    );
 
-  return { applySearchForColumns };
-};
+    for (const item of columns) {
+      const dataIndex = `search[${item.dataIndex}]`;
+      const isItemGlobalSearchable = !!item.globalSearch;
+      const paramAlreadyExistsInUrl = params.has(dataIndex);
+
+      if (!isItemGlobalSearchable) {
+        continue;
+      }
+
+      if (paramAlreadyExistsInUrl) {
+        params.delete(dataIndex);
+      }
+
+      if (search) {
+        params.append(dataIndex, search);
+      } else {
+        params.delete(dataIndex);
+      }
+    }
+    router.push(`?${params.toString()}`);
+  };
+
+  return { applySearchForColumns, applyGlobalSearch };
+}

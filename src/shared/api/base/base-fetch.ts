@@ -3,7 +3,6 @@ import * as qs from 'qs';
 import { BaseFetchType } from '@/src/shared/api/types/base-fetch.type';
 import { GenerateUrlType } from '@/src/shared/api/types/generate-url.type';
 import { GenerateUrlArguments } from '@/src/shared/api/types/interfaces/generate-url-arguments.interface';
-import { apiConfig } from '@/src/shared/config/config';
 
 export const baseFetch: BaseFetchType = async (
   url: string,
@@ -12,9 +11,9 @@ export const baseFetch: BaseFetchType = async (
   const accessToken: string | undefined = cookies().get('accessToken')?.value;
   const refreshToken: string | undefined = cookies().get('refreshToken')?.value;
 
-  const tokens: string = `accessToken=${accessToken}; refreshToken=${refreshToken}`;
+  const tokens = `accessToken=${accessToken}; refreshToken=${refreshToken}`;
 
-  return await fetch(`${apiConfig.rootApiUrl}/${url}`, {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_ROOT}/${url}`, {
     ...data,
     headers: {
       ...data.headers,
@@ -28,7 +27,7 @@ export const generateUrl: GenerateUrlType = <T>(
   data: GenerateUrlArguments<T>,
 ): string => {
   const { url, subResource, id, queryParameters } = data;
-  const urlWithId: string = `${url}${id ? `/${id}` : ''}${subResource ? `/${subResource}` : ''}`;
+  const urlWithId = `${url}${id ? `/${id}` : ''}${subResource ? `/${subResource}` : ''}`;
 
   if (queryParameters) {
     const queryString: string = qs.stringify(data.queryParameters, {
