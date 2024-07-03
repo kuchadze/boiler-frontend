@@ -17,7 +17,7 @@ const CreateProjectForm = (props: {
   const { control, handleSubmit, reset } = useForm<ProjectSchema>({
     resolver: classValidatorResolver(ProjectSchema),
   });
-  const isUpdating: boolean = !!(props.project && props.id);
+  const isUpdating = !!(props.project && props.id);
   const router: AppRouterInstance = useRouter();
 
   useEffect(() => {

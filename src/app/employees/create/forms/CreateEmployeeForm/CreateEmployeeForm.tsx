@@ -17,7 +17,7 @@ const CreateEmployeeForm = (props: {
   const { control, handleSubmit, reset } = useForm<EmployeeSchema>({
     resolver: classValidatorResolver(EmployeeSchema),
   });
-  const isUpdating: boolean = !!(props.employee && props.id);
+  const isUpdating = !!(props.employee && props.id);
   const router: AppRouterInstance = useRouter();
 
   useEffect(() => {

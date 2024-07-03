@@ -17,7 +17,7 @@ const CreateDepartmentForm = (props: {
   const { control, handleSubmit, reset } = useForm<DepartmentSchema>({
     resolver: classValidatorResolver(DepartmentSchema),
   });
-  const isUpdating: boolean = !!(props.department && props.id);
+  const isUpdating = !!(props.department && props.id);
   const router: AppRouterInstance = useRouter();
 
   useEffect(() => {

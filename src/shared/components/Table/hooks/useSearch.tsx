@@ -27,8 +27,8 @@ export function useSearch<T>(
     const params: URLSearchParams = new URLSearchParams(
       searchParams.toString(),
     );
-    const searchDataIndex: string = `search[${dataIndex}]`;
-    const paramAlreadyExistsInUrl: boolean = params.has(searchDataIndex);
+    const searchDataIndex = `search[${dataIndex}]`;
+    const paramAlreadyExistsInUrl = params.has(searchDataIndex);
 
     if (paramAlreadyExistsInUrl) {
       params.delete(searchDataIndex);
@@ -95,9 +95,9 @@ export function useSearch<T>(
     );
 
     for (const item of columns) {
-      const dataIndex: string = `search[${item.dataIndex}]`;
-      const isItemGlobalSearchable: boolean = !!item.globalSearch;
-      const paramAlreadyExistsInUrl: boolean = params.has(dataIndex);
+      const dataIndex = `search[${item.dataIndex}]`;
+      const isItemGlobalSearchable = !!item.globalSearch;
+      const paramAlreadyExistsInUrl = params.has(dataIndex);
 
       if (!isItemGlobalSearchable) {
         continue;
