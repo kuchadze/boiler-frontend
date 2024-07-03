@@ -3,7 +3,6 @@ import * as qs from 'qs';
 import { BaseFetchType } from '@/src/shared/api/types/base-fetch.type';
 import { GenerateUrlType } from '@/src/shared/api/types/generate-url.type';
 import { GenerateUrlArguments } from '@/src/shared/api/types/interfaces/generate-url-arguments.interface';
-import { apiConfig } from '@/src/shared/config/config';
 
 export const baseFetch: BaseFetchType = async (
   url: string,
@@ -14,7 +13,7 @@ export const baseFetch: BaseFetchType = async (
 
   const tokens = `accessToken=${accessToken}; refreshToken=${refreshToken}`;
 
-  return await fetch(`${apiConfig.rootApiUrl}/${url}`, {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_ROOT}/${url}`, {
     ...data,
     headers: {
       ...data.headers,
