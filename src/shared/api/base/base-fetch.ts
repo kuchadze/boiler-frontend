@@ -12,7 +12,7 @@ export const baseFetch: BaseFetchType = async (
   const accessToken: string | undefined = cookies().get('accessToken')?.value;
   const refreshToken: string | undefined = cookies().get('refreshToken')?.value;
 
-  const tokens: string = `accessToken=${accessToken}; refreshToken=${refreshToken}`;
+  const tokens = `accessToken=${accessToken}; refreshToken=${refreshToken}`;
 
   return await fetch(`${apiConfig.rootApiUrl}/${url}`, {
     ...data,
@@ -28,7 +28,7 @@ export const generateUrl: GenerateUrlType = <T>(
   data: GenerateUrlArguments<T>,
 ): string => {
   const { url, subResource, id, queryParameters } = data;
-  const urlWithId: string = `${url}${id ? `/${id}` : ''}${subResource ? `/${subResource}` : ''}`;
+  const urlWithId = `${url}${id ? `/${id}` : ''}${subResource ? `/${subResource}` : ''}`;
 
   if (queryParameters) {
     const queryString: string = qs.stringify(data.queryParameters, {
