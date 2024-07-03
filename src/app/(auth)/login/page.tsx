@@ -8,6 +8,8 @@ import OAuthLogin from '@/src/shared/components/OAuthLogin/OAuthLogin';
 import { OAuthTypeEnum } from '@/src/shared/types/enums/oauth-type.enum';
 
 const LoginPage: ComponentType = () => {
+  console.log(OAuthTypeEnum.Facebook);
+
   return (
     <div className={styles.container}>
       <LoginForm />
