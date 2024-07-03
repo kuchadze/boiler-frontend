@@ -16,9 +16,7 @@ const handleJwtTokenExpiration = async (
     url: 'auth/refresh',
   })) as unknown as DataInterface<AuthResponseInterface>;
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const isRefreshTokenExpired: boolean = tokensResponse?.['statusCode'] === 401;
+  const isRefreshTokenExpired: boolean = tokensResponse?.status === 401;
 
   if (!isRefreshTokenExpired) {
     const response: NextResponse = NextResponse.next();
@@ -36,7 +34,7 @@ export async function middleware(
   const accessToken: string | undefined = cookies().get('accessToken')?.value;
   const refreshToken: string | undefined = cookies().get('refreshToken')?.value;
 
-  const areTokensSet: boolean = !!(accessToken && refreshToken);
+  const areTokensSet = !!(accessToken && refreshToken);
 
   if (!areTokensSet) {
     return redirectToLoginPage(req);
@@ -45,6 +43,10 @@ export async function middleware(
   const decodedJwt: jwt.JwtPayload = jwt.decode(
     accessToken as string,
   ) as jwt.JwtPayload;
+
+  if (!decodedJwt) {
+    return redirectToLoginPage(req);
+  }
 
   const jwtExpirationDate: dayjs.Dayjs = dayjs.unix(decodedJwt?.exp as number);
   const isJwtExpired: boolean = dayjs(jwtExpirationDate).isBefore(new Date());
