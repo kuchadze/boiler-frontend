@@ -12,15 +12,16 @@ const EmployeesPage = async (props: {
   const limit: number = parseInt(props.searchParams.limit || '5', 10);
   const offset: number = parseInt(props.searchParams.offset || '0', 10);
 
-  const employees: DataInterface<EmployeeInterface[]> =
-    await get<EmployeeInterface>({
-      url: 'employees',
-      queryParameters: {
-        ...props.searchParams,
-        limit,
-        offset,
-      },
-    });
+  const employees: DataInterface<EmployeeInterface[]> = await get<
+    EmployeeInterface[]
+  >({
+    url: 'employees',
+    queryParameters: {
+      ...props.searchParams,
+      limit,
+      offset,
+    },
+  });
 
   const dataSource: EmployeeTableDataSourceInterface[] = employees.data.map(
     (employees: EmployeeInterface) => ({
@@ -37,7 +38,7 @@ const EmployeesPage = async (props: {
 
   return (
     <div className={styles.container}>
-      <Table
+      <Table<EmployeeTableDataSourceInterface[]>
         resource={'departments'}
         dataSource={dataSource}
         count={employees.count}

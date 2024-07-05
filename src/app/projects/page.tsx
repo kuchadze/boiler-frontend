@@ -11,15 +11,16 @@ const ProjectsPage = async (props: {
   const limit: number = parseInt(props.searchParams.limit || '5', 10);
   const offset: number = parseInt(props.searchParams.offset || '0', 10);
 
-  const projects: DataInterface<ProjectInterface[]> =
-    await get<ProjectInterface>({
-      url: 'projects',
-      queryParameters: {
-        ...props.searchParams,
-        limit,
-        offset,
-      },
-    });
+  const projects: DataInterface<ProjectInterface[]> = await get<
+    ProjectInterface[]
+  >({
+    url: 'projects',
+    queryParameters: {
+      ...props.searchParams,
+      limit,
+      offset,
+    },
+  });
 
   const dataSource: ProjectTableDataSourceInterface[] = projects.data.map(
     (project: ProjectInterface) => ({
@@ -33,7 +34,7 @@ const ProjectsPage = async (props: {
 
   return (
     <div className={styles.container}>
-      <Table
+      <Table<ProjectTableDataSourceInterface[]>
         resource={'projects'}
         dataSource={dataSource}
         count={projects.count}

@@ -12,15 +12,16 @@ const DepartmentsPage = async (props: {
   const limit: number = parseInt(props.searchParams.limit || '5', 10);
   const offset: number = parseInt(props.searchParams.offset || '0', 10);
 
-  const departments: DataInterface<DepartmentInterface[]> =
-    await get<DepartmentInterface>({
-      url: 'departments',
-      queryParameters: {
-        ...props.searchParams,
-        limit,
-        offset,
-      },
-    });
+  const departments: DataInterface<DepartmentInterface[]> = await get<
+    DepartmentInterface[]
+  >({
+    url: 'departments',
+    queryParameters: {
+      ...props.searchParams,
+      limit,
+      offset,
+    },
+  });
 
   const dataSource: DepartmentTableDataSourceInterface[] = departments.data.map(
     (department: DepartmentInterface) => ({
@@ -33,7 +34,7 @@ const DepartmentsPage = async (props: {
 
   return (
     <div className={styles.container}>
-      <Table
+      <Table<DepartmentTableDataSourceInterface[]>
         resource={'departments'}
         dataSource={dataSource}
         count={departments.count}

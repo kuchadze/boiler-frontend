@@ -1,6 +1,14 @@
 'use client';
-import { Button, Form, Input, Table as AntdTable, TableProps } from 'antd';
-import { ColumnType } from 'antd/es/table';
+import {
+  Button,
+  Form,
+  Input,
+  Table as AntdTable,
+  TablePaginationConfig,
+  TableProps,
+} from 'antd';
+import { AnyObject } from 'antd/es/_util/type';
+import { ColumnsType } from 'antd/es/table';
 import { SorterResult } from 'antd/lib/table/interface';
 import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
 import { JSX } from 'react';
@@ -26,29 +34,31 @@ export default function Table<T>(props: TablePropsInterface<T>): JSX.Element {
     const { order, field } = sorter as SorterResult<T>;
     const { pageSize } = pagination;
     sort(field as keyof T, sortObjectMaps[order as string]);
-    paginate(pageSize ?? props.limit, pagination.current);
+    paginate(pageSize ?? props.limit, pagination['current']);
   };
 
   return (
     <div>
       <Form onFinish={onFinish}>
-        <Form.Item name={'search'}>
+        <Form.Item name="search">
           <Input />
         </Form.Item>
         <Button htmlType={'submit'}>Submit</Button>
       </Form>
       <AntdTable
-        columns={columns as ColumnType<T>[]}
+        columns={columns as ColumnsType<AnyObject>}
         dataSource={props.dataSource as []}
         rowKey={'id'}
         onChange={onChange}
         showSorterTooltip={{ target: 'sorter-icon' }}
-        pagination={{
-          defaultPageSize: props.limit,
-          total: props.count,
-          current:
-            parseInt(searchParams.get('offset') ?? '0') / props.limit + 1,
-        }}
+        pagination={
+          {
+            defaultPageSize: props.limit,
+            total: props.count,
+            current:
+              parseInt(searchParams.get('offset') ?? '0') / props.limit + 1,
+          } as TablePaginationConfig
+        }
       />
     </div>
   );
