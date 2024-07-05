@@ -14,6 +14,11 @@
     "import"
   ],
   "rules": {
+    "no-console": "error",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/array-type": "error",
+    "@typescript-eslint/ban-ts-comment": "error",
+    "@typescript-eslint/no-inferrable-types": "error",
     "prettier/prettier": [
       "error",
       {
@@ -26,7 +31,13 @@
     "@typescript-eslint/typedef": [
       "error",
       {
-        "variableDeclaration": true,
+        "arrayDestructuring": false,
+        "arrowParameter": false,
+        "memberVariableDeclaration": false,
+        "objectDestructuring": false,
+        "parameter": true,
+        "propertyDeclaration": true,
+        "variableDeclaration": false,
         "variableDeclarationIgnoreFunction": true
       }
     ],

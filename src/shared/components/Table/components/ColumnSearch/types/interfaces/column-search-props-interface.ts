@@ -7,5 +7,7 @@ export interface ColumnSearchPropsInterface extends FilterDropDownInterface {
     selectedKeys: string[],
     confirm: () => void,
     dataIndex: string,
+    value: string | null,
   ) => void;
+  value: string | null;
 }
