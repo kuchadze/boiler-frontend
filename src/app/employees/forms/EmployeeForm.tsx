@@ -5,15 +5,16 @@ import {
   EmployeeModel,
   UpdateEmployeeDto,
 } from '@novatoriteam/validators';
-import { Button, Form, Input } from 'antd';
+import { Button, Form } from 'antd';
 import { instanceToPlain } from 'class-transformer';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useRouter } from 'next/navigation';
 import { JSX } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import styles from './EmployeeForm.module.scss';
 import { EmployeeFormType } from '@/src/app/employees/forms/types/employee-form.type';
 import { upsertApi } from '@/src/shared/api/crud-operations';
+import ControlledInput from '@/src/shared/components/ControlledInput/ControlledInput';
 
 const EmployeeForm = (props: { employee?: EmployeeModel }): JSX.Element => {
   const router: AppRouterInstance = useRouter();
@@ -39,46 +40,22 @@ const EmployeeForm = (props: { employee?: EmployeeModel }): JSX.Element => {
     <div className={styles.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Form.Item label={'სახელი'}>
-          <Controller
-            name="firstName"
-            control={control}
-            render={({ field }) => <Input {...field} />}
-          />
+          <ControlledInput name="firstName" control={control} type={'text'} />
         </Form.Item>
         <Form.Item label={'გვარი'}>
-          <Controller
-            name="lastName"
-            control={control}
-            render={({ field }) => <Input {...field} />}
-          />
+          <ControlledInput name="lastName" control={control} type={'text'} />
         </Form.Item>
         <Form.Item label={'მეილი'}>
-          <Controller
-            name="email"
-            control={control}
-            render={({ field }) => <Input {...field} />}
-          />
+          <ControlledInput name="email" control={control} type={'email'} />
         </Form.Item>
         <Form.Item label={'ტელეფონის ნომერი'}>
-          <Controller
-            name="phoneNumber"
-            control={control}
-            render={({ field }) => <Input {...field} />}
-          />
+          <ControlledInput name="phoneNumber" control={control} type={'text'} />
         </Form.Item>
         <Form.Item label={'სამსახური'}>
-          <Controller
-            name="jobTitle"
-            control={control}
-            render={({ field }) => <Input {...field} />}
-          />
+          <ControlledInput name="jobTitle" control={control} type={'text'} />
         </Form.Item>
         <Form.Item label={'ხელფასი'}>
-          <Controller
-            name="salary"
-            control={control}
-            render={({ field }) => <Input {...field} />}
-          />
+          <ControlledInput name="salary" control={control} type={'text'} />
         </Form.Item>
         <Button htmlType={'submit'}>
           {props.employee ? 'განახლება' : 'დამატება'}
