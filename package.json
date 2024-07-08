@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.7.0",
+    "@nestjs/mapped-types": "^2.0.5",
+    "@novatoriteam/validators": "latest",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "antd": "^5.18.0",
     "class-transformer": "^0.5.1",

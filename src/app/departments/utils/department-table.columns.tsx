@@ -1,11 +1,8 @@
 'use client';
-
-import { DepartmentTableDataSourceInterface } from '@/src/app/departments/types/interfaces/department-table-data-source.interface';
+import { DepartmentModel } from '@novatoriteam/validators';
 import { AntColumnInterface } from '@/src/shared/components/Table/types/interfaces/ant-column.interface';
 
-export const departmentTableColumns: AntColumnInterface<
-  DepartmentTableDataSourceInterface[]
->[] = [
+export const departmentTableColumns: AntColumnInterface<DepartmentModel[]>[] = [
   {
     title: 'სახელი',
     dataIndex: 'name',
