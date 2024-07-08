@@ -1,24 +1,8 @@
 import { JSX } from 'react';
-import styles from './CreateProjectPage.module.scss';
-import CreateProjectForm from '@/src/app/projects/create/forms/CreateProjectForm/CreateProjectForm';
-import { ProjectInterface } from '@/src/app/projects/interfaces/project.interface';
-import { DataInterface, get } from '@/src/shared/api/get-function';
+import ProjectForm from '@/src/app/projects/forms/ProjectForm';
 
-const CreateProjectPage = async (props: {
-  searchParams: { id: number };
-}): Promise<JSX.Element> => {
-  const project: DataInterface<ProjectInterface> = await get<ProjectInterface>(
-    {
-      url: 'projects',
-    },
-    props.searchParams.id,
-  );
-
-  return (
-    <div className={styles.container}>
-      <CreateProjectForm project={project.data} id={props.searchParams.id} />
-    </div>
-  );
+const CreateProjectPage = async (): Promise<JSX.Element> => {
+  return <ProjectForm />;
 };
 
 export default CreateProjectPage;

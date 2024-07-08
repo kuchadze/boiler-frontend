@@ -16,16 +16,8 @@ export interface GetDataArguments<T> {
 
 export async function get<T>(
   data: GetDataArguments<T>,
-): Promise<DataInterface<T[]>>;
-export async function get<T>(
-  data: GetDataArguments<T>,
   id?: number,
-): Promise<DataInterface<T>>;
-
-export async function get<T>(
-  data: GetDataArguments<T>,
-  id?: number,
-): Promise<DataInterface<T> | DataInterface<T[]>> {
+): Promise<DataInterface<T>> {
   const { url, subResource, queryParameters } = data;
   const response: Response = await baseFetch(
     generateUrl({ url, id, subResource, queryParameters }),

@@ -1,11 +1,8 @@
 'use client';
-
-import { EmployeeTableDataSourceInterface } from '@/src/app/employees/types/interfaces/employee-table-data-source.interface';
+import { EmployeeModel } from '@novatoriteam/validators';
 import { AntColumnInterface } from '@/src/shared/components/Table/types/interfaces/ant-column.interface';
 
-export const employeeTableColumns: AntColumnInterface<
-  EmployeeTableDataSourceInterface[]
->[] = [
+export const employeeTableColumns: AntColumnInterface<EmployeeModel[]>[] = [
   {
     title: 'სახელი',
     dataIndex: 'firstName',

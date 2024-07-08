@@ -1,10 +1,8 @@
 'use client';
-import { ProjectTableDataSourceInterface } from '@/src/app/projects/interfaces/project-table-data-source.interface';
+import { ProjectModel } from '@novatoriteam/validators';
 import { AntColumnInterface } from '@/src/shared/components/Table/types/interfaces/ant-column.interface';
 
-export const projectTableColumns: AntColumnInterface<
-  ProjectTableDataSourceInterface[]
->[] = [
+export const projectTableColumns: AntColumnInterface<ProjectModel[]>[] = [
   {
     title: 'სახელი',
     dataIndex: 'name',
