@@ -3,7 +3,8 @@ import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { AuthResponseInterface } from '@/src/app/(auth)/types/interfaces/auth-response.interface';
-import { DataInterface, get } from '@/src/shared/api/get-function';
+import { get } from '@/src/shared/api/get-function';
+import { DataInterface } from '@/src/shared/api/types/interfaces/data.interface';
 
 const redirectToLoginPage = (req: NextRequest): NextResponse<unknown> => {
   return NextResponse.redirect(new URL('/login', req.url));

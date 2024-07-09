@@ -7,10 +7,10 @@ import { IdParamInterface } from '@/src/shared/types/interfaces/id-param.interfa
 const EditDepartmentPage: FC<IdParamInterface> = async (
   props: IdParamInterface,
 ) => {
-  const department = await get<DepartmentModel>(
-    { url: 'departments' },
-    props.params.id,
-  );
+  const department = await get<DepartmentModel>({
+    url: 'departments',
+    id: props.params.id,
+  });
 
   return <DepartmentForm department={department.data} />;
 };

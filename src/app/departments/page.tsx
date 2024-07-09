@@ -1,22 +1,20 @@
 import { DepartmentModel } from '@novatoriteam/validators';
-import { JSX } from 'react';
+import { FC } from 'react';
 import styles from './DepartmentsPage.module.scss';
 import { departmentTableColumns } from '@/src/app/departments/utils/department-table.columns';
 import { get } from '@/src/shared/api/get-function';
 import Table from '@/src/shared/components/Table/Table';
+import { SearchParamsInterface } from '@/src/shared/types/interfaces/search-params.interface';
 
-const DepartmentsPage = async (props: {
-  searchParams: { [key: string]: string };
-}): Promise<JSX.Element> => {
-  const limit: number = parseInt(props.searchParams.limit || '5', 10);
-  const offset: number = parseInt(props.searchParams.offset || '0', 10);
-
+const DepartmentsPage: FC<SearchParamsInterface> = async (
+  props: SearchParamsInterface,
+) => {
   const departments = await get<DepartmentModel[]>({
     url: 'departments',
     queryParameters: {
+      limit: 5,
+      offset: 0,
       ...props.searchParams,
-      limit,
-      offset,
     },
   });
 

@@ -1,8 +1,11 @@
-export type QueriesType<T, TKeys extends string | number | symbol = keyof T> =
+type ElementType<T> = T extends (infer U)[] ? U : T;
+
+export type QueriesType<T> =
   | {
-      [key in TKeys]: string;
+      [key in keyof ElementType<T>]: string;
     }
-  | TKeys[]
+  | (keyof ElementType<T>)[]
   | {
       [key: string]: string | number;
-    };
+    }
+  | { limit: number; offset: number };

@@ -1,4 +1,4 @@
-import { DataInterface } from '@/src/shared/api/get-function';
+import { DataInterface } from '@/src/shared/api/types/interfaces/data.interface';
 
 export interface ResponseInterface<T> {
   body: DataInterface<T>;
