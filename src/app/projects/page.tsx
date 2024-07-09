@@ -9,15 +9,12 @@ import { SearchParamsInterface } from '@/src/shared/types/interfaces/search-para
 const ProjectsPage: FC<SearchParamsInterface> = async (
   props: SearchParamsInterface,
 ) => {
-  const limit: number = parseInt(props.searchParams.limit || '5', 10);
-  const offset: number = parseInt(props.searchParams.offset || '0', 10);
-
   const projects = await get<ProjectModel[]>({
     url: 'projects',
     queryParameters: {
+      limit: 5,
+      offset: 0,
       ...props.searchParams,
-      limit,
-      offset,
     },
   });
 

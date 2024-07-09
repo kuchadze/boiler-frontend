@@ -7,7 +7,10 @@ import { IdParamInterface } from '@/src/shared/types/interfaces/id-param.interfa
 const EditProjectPage: FC<IdParamInterface> = async (
   props: IdParamInterface,
 ) => {
-  const project = await get<ProjectModel>({ url: 'projects' }, props.params.id);
+  const project = await get<ProjectModel>({
+    url: 'projects',
+    id: props.params.id,
+  });
 
   return <ProjectForm project={project.data} />;
 };

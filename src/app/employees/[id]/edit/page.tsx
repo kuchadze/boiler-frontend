@@ -7,12 +7,10 @@ import { IdParamInterface } from '@/src/shared/types/interfaces/id-param.interfa
 const EditEmployeePage: FC<IdParamInterface> = async (
   props: IdParamInterface,
 ) => {
-  const employee = await get<EmployeeModel>(
-    {
-      url: 'employees',
-    },
-    props.params.id,
-  );
+  const employee = await get<EmployeeModel>({
+    url: 'employees',
+    id: props.params.id,
+  });
 
   return <EmployeeForm employee={employee.data} />;
 };
