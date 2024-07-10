@@ -3,6 +3,7 @@ const nextConfig = {
   experimental: {
     serverActions: {},
   },
+  output: 'standalone',
   webpack: (
     config,
     { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack },
