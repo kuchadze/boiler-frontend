@@ -12,8 +12,8 @@ const ProjectsPage: FC<SearchParamsInterface> = async (
   const projects = await get<ProjectModel[]>({
     url: 'projects',
     queryParameters: {
-      limit: 5,
       offset: 0,
+      limit: 5,
       ...props.searchParams,
     },
   });
