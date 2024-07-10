@@ -13,7 +13,7 @@ export const oAuthConfig: OAuthConfigInterface = {
   [OAuthTypeEnum.Google]:
     process.env.NEXT_PUBLIC_GOOGLE_AUTH_REDIRECT_URL ?? '',
   [OAuthTypeEnum.Discord]:
-    process.env.NEXT_PUBLIC_DISCORD_AUTH_REDIRECT_URl ?? '',
+    process.env.NEXT_PUBLIC_DISCORD_AUTH_REDIRECT_URL ?? '',
   [OAuthTypeEnum.Facebook]:
     process.env.NEXT_PUBLIC_FACEBOOK_AUTH_REDIRECT_URL ?? '',
 };
