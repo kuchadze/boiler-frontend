@@ -16,4 +16,7 @@ export const oAuthConfig: OAuthConfigInterface = {
     process.env.NEXT_PUBLIC_DISCORD_AUTH_REDIRECT_URL ?? '',
   [OAuthTypeEnum.Facebook]:
     process.env.NEXT_PUBLIC_FACEBOOK_AUTH_REDIRECT_URL ?? '',
+  [OAuthTypeEnum.Bnet]: process.env.NEXT_PUBLIC_BNET_AUTH_REDIRECT_URL ?? '',
+  [OAuthTypeEnum.Github]:
+    process.env.NEXT_PUBLIC_GITHUB_AUTH_REDIRECT_URL ?? '',
 };
