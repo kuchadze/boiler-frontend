@@ -1,23 +1,23 @@
 import { Input } from 'antd';
-import { FC } from 'react';
-import { Control, Controller, FieldValues } from 'react-hook-form';
+import { JSX } from 'react';
+import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 
-interface ControlledInputPropsInterface {
+interface ControlledInputPropsInterface<T extends FieldValues> {
   name: string;
   type: string;
-  control: Control<FieldValues>;
+  control: Control<T>;
 }
 
-const ControlledInput: FC<ControlledInputPropsInterface> = (
-  props: ControlledInputPropsInterface,
-) => {
+function ControlledInput<T extends FieldValues>(
+  props: ControlledInputPropsInterface<T>,
+): JSX.Element {
   return (
     <Controller
       render={({ field }) => <Input {...field} />}
-      name={props.name}
+      name={props.name as Path<T>}
       control={props.control}
     />
   );
-};
+}
 
 export default ControlledInput;

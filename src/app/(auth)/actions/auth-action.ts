@@ -1,4 +1,5 @@
 'use server';
+import { AuthResponseDto, VerifyOtpDto } from '@novatoriteam/validators';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { LoginInterface } from '@/src/app/(auth)/login/types/interfaces/login.interface';
@@ -23,16 +24,47 @@ export const authAction: AuthActionType = async (
 
   if (response.ok) {
     const { accessToken, refreshToken } = response.body.data;
-
-    cookies().set('accessToken', accessToken, {
-      httpOnly: true,
-      expires: getAccessTokenExpirationTime(),
-    });
-    cookies().set('refreshToken', refreshToken, {
-      httpOnly: true,
-      expires: getRefreshTokenExpirationTime(),
-    });
-
-    redirect('/');
+    handleAuthentication(accessToken, refreshToken);
   }
+};
+
+export const phoneAction = async (phone: string): Promise<void> => {
+  const response = await createApi<{ phone: string }, void>('auth/otp', {
+    phone,
+  });
+
+  if (response.ok) {
+    redirect('/otp');
+  }
+};
+
+export const verifyOtpAction = async (
+  phone: string,
+  otp: string,
+): Promise<void> => {
+  const response = await createApi<VerifyOtpDto, AuthResponseDto>(
+    'auth/verify-otp',
+    { phone, otp: String(otp) },
+  );
+
+  if (response.ok) {
+    const { accessToken, refreshToken } = response.body.data;
+    handleAuthentication(accessToken, refreshToken);
+  }
+};
+
+const handleAuthentication = (
+  accessToken: string,
+  refreshToken: string,
+): void => {
+  cookies().set('accessToken', accessToken, {
+    httpOnly: true,
+    expires: getAccessTokenExpirationTime(),
+  });
+  cookies().set('refreshToken', refreshToken, {
+    httpOnly: true,
+    expires: getRefreshTokenExpirationTime(),
+  });
+
+  redirect('/');
 };
