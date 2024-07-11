@@ -19,4 +19,5 @@ export const oAuthConfig: OAuthConfigInterface = {
   [OAuthTypeEnum.Bnet]: process.env.NEXT_PUBLIC_BNET_AUTH_REDIRECT_URL ?? '',
   [OAuthTypeEnum.Github]:
     process.env.NEXT_PUBLIC_GITHUB_AUTH_REDIRECT_URL ?? '',
+  [OAuthTypeEnum.Steam]: process.env.NEXT_PUBLIC_STEAM_AUTH_REDIRECT_URL ?? '',
 };
