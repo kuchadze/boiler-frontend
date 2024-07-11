@@ -7,6 +7,11 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
+
+ARG NPMRC_KEY
+
+RUN echo "//npm.pkg.github.com/:_authToken=${NPMRC_KEY}" > ~/.npmrc
+
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
@@ -14,6 +19,7 @@ RUN \
   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
   else echo "Lockfile not found." && exit 1; \
   fi
+
 
 
 # Rebuild the source code only when needed
@@ -30,12 +36,21 @@ COPY . .
 # Define build-time variables
 ARG NEXT_PUBLIC_API_ROOT
 ARG NEXT_PUBLIC_GOOGLE_AUTH_REDIRECT_URL
-ARG NEXT_PUBLIC_DISCORD_AUTH_REDIRECT_URl
+ARG NEXT_PUBLIC_DISCORD_AUTH_REDIRECT_URL
+ARG NEXT_PUBLIC_FACEBOOK_AUTH_REDIRECT_URL
+ARG NEXT_PUBLIC_BNET_AUTH_REDIRECT_URL
+ARG NEXT_PUBLIC_GITHUB_AUTH_REDIRECT_URL
+ARG NEXT_PUBLIC_STEAM_AUTH_REDIRECT_URL
 
 # Set the environment variables based on build-time variables
 ENV NEXT_PUBLIC_API_ROOT=$NEXT_PUBLIC_API_ROOT
 ENV NEXT_PUBLIC_GOOGLE_AUTH_REDIRECT_URL=$NEXT_PUBLIC_GOOGLE_AUTH_REDIRECT_URL
-ENV NEXT_PUBLIC_DISCORD_AUTH_REDIRECT_URl=$NEXT_PUBLIC_DISCORD_AUTH_REDIRECT_URl
+ENV NEXT_PUBLIC_DISCORD_AUTH_REDIRECT_URL=$NEXT_PUBLIC_DISCORD_AUTH_REDIRECT_URL
+ENV NEXT_PUBLIC_FACEBOOK_AUTH_REDIRECT_URL=$NEXT_PUBLIC_FACEBOOK_AUTH_REDIRECT_URL
+ENV NEXT_PUBLIC_BNET_AUTH_REDIRECT_URL=$NEXT_PUBLIC_BNET_AUTH_REDIRECT_URL
+ENV NEXT_PUBLIC_GITHUB_AUTH_REDIRECT_URL=$NEXT_PUBLIC_GITHUB_AUTH_REDIRECT_URL
+ENV NEXT_PUBLIC_STEAM_AUTH_REDIRECT_URL=$NEXT_PUBLIC_STEAM_AUTH_REDIRECT_URL
+
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
