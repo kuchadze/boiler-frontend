@@ -3,11 +3,12 @@ const nextConfig = {
   experimental: {
     serverActions: {},
   },
+  output: 'standalone',
   webpack: (
     config,
     { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack },
   ) => {
-    const lazyImports = ['class-transformer/storage'];
+    const lazyImports = ['class-transformer/storage', 'nestjs/common'];
 
     config.plugins.push(new webpack.IgnorePlugin({
       checkResource(resource) {
